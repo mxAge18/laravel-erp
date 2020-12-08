@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('api')->prefix('v1')->group( function () {
+    Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::put('/register', [AuthenticationController::class, 'register']);
 });
