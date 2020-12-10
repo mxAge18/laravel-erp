@@ -23,3 +23,9 @@ Route::middleware('api')->prefix('v1')->group( function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
     Route::put('/register', [AuthenticationController::class, 'register']);
 });
+
+
+Route::middleware('auth:api')->prefix('v1')->group(function () {
+    Route::get('/info', [AuthenticationController::class,'getUserInfo']);
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
+});
